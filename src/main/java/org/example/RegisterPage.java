@@ -48,7 +48,7 @@ public class RegisterPage extends UtilClass
 
         //reusable method to select item from dropdown
     selectFromDropDownByIndex(_dateOfBirth,6);
-    selectFromDropDownByText(_monthOfBirth,"July");
+    selectFromDropDownByVisibleText(_monthOfBirth,"July");
     selectFromDropDownByValue(_yearOfBirth,"2000");
 
     //use inbuilt timestamp method to save email

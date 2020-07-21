@@ -21,7 +21,7 @@ public class BrowserManager extends UtilClass
 
     public void closeBrowser ()
     {
-        driver.close();
+       // driver.close();
     }
 
 }

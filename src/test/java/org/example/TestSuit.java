@@ -1,6 +1,11 @@
 package org.example;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class TestSuit extends BaseTest
 {
@@ -15,7 +20,9 @@ public class TestSuit extends BaseTest
     EmailSuccessfulySentPage emailSuccessfulySentPage = new EmailSuccessfulySentPage();
     BookPage bookPage = new BookPage();
     ShoppingCartAsserPage shoppingCartAsserPage = new ShoppingCartAsserPage();
-
+    FaceBookPopupPage faceBookPopupPage = new FaceBookPopupPage();
+    NewsOnlineStorePage newsOnlineStorePage = new NewsOnlineStorePage();
+    IframeExample iframeExample = new IframeExample();
 
 
     @Test (priority = 1)
@@ -68,6 +75,35 @@ public class TestSuit extends BaseTest
         emailSuccessfulySentPage.emailSuccessfullSentAsser();
     }
 
+    @Test
+public void verifyEachProductName()
+{
+    // stored product list locator in product list
+    List<WebElement> productList = driver.findElements(By.xpath("//div[@class='product-grid home-page-product-grid']//div[2]/h2/a"));
+    System.out.println("products : " + productList.size());
+    //Stored add to cart button locators in add to cart variables
+    List<WebElement> addToCartButton = driver.findElements(By.xpath("//input[@value='Add to cart']"));
+    System.out.println("Add to cart  count : " + addToCartButton.size());
+
+    //
+    Assert.assertEquals(addToCartButton.size(),productList.size());
+
+
+        //getting all list by using for loop
+    for (WebElement product : productList)
+    {
+        System.out.println(product.getText()); //
+
+    }
+}
+
+public void menuListHomePage()
+    {
+       // List<WebElement> menuList = driver.findElements(By.ByXPath(""));
+
+
+    }
+
         @Test (priority = 3)
         public void userShouldBeAbleToAddProducts()
         {
@@ -86,4 +122,64 @@ public class TestSuit extends BaseTest
 
             shoppingCartAsserPage.bookAssert();
     }
+
+    @Test
+    public void alertWindow()
+    {
+        homepage.homePageVerification();
+        homepage.clickOnSerchButton();   //Calling click on search button method
+        homepage.searchAlertWindowAssert(); // calling Assert method
+
+    }
+
+@Test
+    public void verifyUserShouldBeAbleToAddDetailOnFaceBookPopupWindow()
+    {
+        homepage.homePageVerification();
+        homepage.faceBookPopupWindow();  //calling facebook clickable method
+
+        //facebook pop window assert
+        faceBookPopupPage.verifyFacebookPopUpWindowURL();
+    }
+@Test
+    public void currencySymbolVerification()
+    {
+           //home page verification
+        homepage.homePageVerification();
+        //select currancy by dropdown method
+        homepage.currancySelectionFromDropdown();
+
+    }
+
+    @Test
+    public void verifyUserShoulBeAbleToSendComment()
+
+    {
+        // Click on detail button
+        homepage.clickOnDetailButton();
+        //assert to verify if the user is on new online store
+        newsOnlineStorePage.newOnlineStoreAssert();
+
+        //input online store detail
+        newsOnlineStorePage.newsOnlineStoreDetailInput();
+
+        // assert to verify the comment has been sent
+        newsOnlineStorePage.newsOnlineCommentSentMsgAssert();
+    }
+    @Test
+    public void verifyUserShouldSelectDetailsInIframe()
+    {
+
+        iframeExample.setBrowser();
+
+
+        // verify if the user is on frame example page
+        iframeExample.verifyUserIsOnFrameExamplePage();
+
+        //input iframe detail
+        iframeExample.frameExampleDetails();
+    }
+
+
 }
+
