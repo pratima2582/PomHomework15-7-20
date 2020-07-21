@@ -55,7 +55,7 @@ public class FaceBookPopupPage extends UtilClass
 
                 //
                 Assert.assertEquals(actualColorValue,expectedColorValue,"the color of element is not the same");
-                    takeSnapShot("facebook");
+
                 // Closing the Child Window.
                 driver.close();
             }

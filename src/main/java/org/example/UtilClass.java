@@ -2,11 +2,12 @@ package org.example;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import sun.reflect.misc.FieldUtil;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -84,7 +85,7 @@ public class UtilClass extends BasePage {
     }
         //reusable method screenshot
 
-    public void takeSnapShot(String screenShotName)
+    public void takeSnapShot(String screenShotName)//Creating
     {
           //convert web driver object to take screenshot
        // TakesScreenshot screenshot = ((TakesScreenshot)driver);
@@ -92,13 +93,13 @@ public class UtilClass extends BasePage {
          // call screen shot method to create image file
         File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-     //   File DestFile = new File("");
+     try {
 
-          //  FileUtils.copyFile(srcFile, new File("src\\Screenshot"+System.currentTimeMillis()+".png"));
-
-
-
-
+         FileHandler.copy(srcFile, new File("src\\Screenshot" + screenShotName + ".jpg"));
+         System.out.println("ScreenShot taken");
+     }
+     catch (IOException e) {
+         e.printStackTrace();}
 
     }
 
