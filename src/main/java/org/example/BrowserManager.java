@@ -12,7 +12,7 @@ public class BrowserManager extends UtilClass
     public void setBrowser()
     {
 
-        System.setProperty("webdriver.chrome.driver", "src\\test\\BrowserDriver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src\\test\\resourses\\BrowserDriver\\chromedriver.exe");
         driver = new ChromeDriver();     //creating chrome driver object to open google chrome browser
         driver.manage().window().maximize();   //maximizing screen
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   //giving implicity wait
